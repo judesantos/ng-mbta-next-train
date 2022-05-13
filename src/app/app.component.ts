@@ -85,14 +85,27 @@ export class AppComponent {
 
       const _e: StopEvent | undefined = event.events.pop();
       if (_e) {
-        this.arriving.forEach((e, idx) => {
+        let updated = false;
+        this.arriving.every((e, idx) => {
           if (
             _e.routeId === e.routeId &&
             _e.vehicle.id === e.vehicle.id
           ) {
-            this.arriving[idx] = _e;
+            if (event.type === StopEventType.UPDATE) {
+              this.arriving[idx] = _e;
+            } else if (event.type === StopEventType.REMOVE) {
+              this.arriving.splice(idx, 1);
+            }
+            return !(updated = true); // break from loop
           }
+          return true; // continue;
         })
+        if (!updated) {
+          // No entry found in list? Must be an ADD event, add.
+          if (event.type === StopEventType.REMOVE) {
+            this.arriving.push(_e);
+          }
+        }
       }
     }
   }

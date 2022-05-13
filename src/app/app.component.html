@@ -60,11 +60,11 @@
       <tr *ngFor="let r of arriving; let i = index">
         <td>{{ r.routeId }}</td>
         <td>{{ r.vehicle.id }} </td>
-        <td [ngClass]="{'notifier': r.eta <= 10 && r.eta > 0}">
+        <td [ngClass]="{'notifier': r.eta < 10 && r.eta > 0}">
           {{ r.arrivalTime | date:'mediumTime' }} 
           <span class="arriving-soon">
             {{ 
-              r.eta > 0 && r.eta <= 10 ? 'Arriving Soon' : (
+              r.eta > 0 && r.eta < 10 ? 'Arriving Soon' : (
                 r.eta <= 0 ? 'Arrived' : ''
               ) 
             }} 

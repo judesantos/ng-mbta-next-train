@@ -185,7 +185,7 @@ export class TrainStopsService {
 
       const arrives = new Date(data?.attributes?.arrival_time);
       const departs = new Date(data?.attributes?.departure_time);
-      const etaMins = arrives.getMinutes() - new Date().getMinutes();
+      const etaMins = Math.abs(arrives.getMinutes() - new Date().getMinutes());
 
       stopEvents = {
         type,
