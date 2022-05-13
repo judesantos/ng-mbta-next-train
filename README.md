@@ -1,7 +1,7 @@
 
 # MBTA - Trains Schedule
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](./src/assets/MBTA-App-img.png?raw=true "Title")
 
 Imagine you live in the Boston area and want a quick reference for when the next train will be coming at a particular stop. Using the MBTA API (details below), write an app using the latest version of Angular to display what time the next train will arrive at your stop.
 ### Requirements:
