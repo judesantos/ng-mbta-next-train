@@ -1,11 +1,20 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <span class="title">{{ title }}</span>
+  <span class="tbar-right">
+    Jude Santos<br/>
+    jude.msantos@gmail.com<br/>
+    909-682-1050
+  </span> 
 </div>
 
 <div class="content" role="main">
 
   <div class="card-container">
+
+    <span class="error head" *ngIf="serverError">
+      Server error - unable to process request
+    </span>
 
     <form
       *ngIf="stops && stops.length"
@@ -13,8 +22,8 @@
       (ngSubmit)="onSubmit(frmStops)"
     >
       <p>
-        <select formControlName="stop" name="stop" id="stop">
-          <option [ngValue]="null" disabled>-- Select location ---</option>
+        <select formControlName="stop">
+          <option [ngValue]="null" disabled>-- Select a Stop ---</option>
           <option
             [ngValue]="stop" 
             *ngFor="let stop of stops; let i = index"
@@ -32,12 +41,49 @@
     </form>
 
   </div>
+  <div class="card-container">
+    <div *ngIf="submitted && arriving.length">
+      <h3>
+        Arriving Today - {{ today | date: 'mediumDate' }}
+      </h3>
+    </div>
+  </div>
+  <div class="card-container arriving">
+    <table *ngIf="arriving.length">
+      <tr>
+          <th>Route</th>
+          <th>Vehicle</th>
+          <th>Arrival</th>
+          <th>Departure</th>
+          <th>ETA (Mins)</th>
+      </tr>
+      <tr *ngFor="let r of arriving; let i = index">
+        <td>{{ r.routeId }}</td>
+        <td>{{ r.vehicle.id }} </td>
+        <td [ngClass]="{'notifier': r.eta <= 10 && r.eta > 0}">
+          {{ r.arrivalTime | date:'mediumTime' }} 
+          <span class="arriving-soon">
+            {{ 
+              r.eta > 0 && r.eta <= 10 ? 'Arriving Soon' : (
+                r.eta <= 0 ? 'Arrived' : ''
+              ) 
+            }} 
+          </span>
+        </td>
+        <td>{{ r.departureTime | date:'mediumTime' }}</td>
+        <td>{{ r.eta }}</td>
+      </tr>
 
+    </table>
+    <span class="error" *ngIf="submitted && !serverError && !arriving.length">
+      <h1>
+        No scheduled arrivals today
+      </h1>
+    </span>
+  </div>
+  
   <!-- Footer -->
   <footer>
-    <span>
-      Jude Santos [jude.msantos@gmail.com/909-682-1050]
-    </span> 
   </footer>
 
   <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">

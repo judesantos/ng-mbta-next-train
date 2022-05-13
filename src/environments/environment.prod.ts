@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiKey: 'INVALID=KEY',
+  serviceHost: 'https://twelfth-of-never.com'
 };

@@ -1,14 +1,21 @@
+
+# MBTA - Trains Schedule
+
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
+
+Imagine you live in the Boston area and want a quick reference for when the next train will be coming at a particular stop. Using the MBTA API (details below), write an app using the latest version of Angular to display what time the next train will arrive at your stop.
+### Requirements:
+• Use a service to fetch the data from the API.
+• Inject the service into the component to display the next arrival time.
+• When the arrival time is less than 10 minutes from the current time, change the color of
+the time display to something that will get your attention (yellow, red, orange?) Also, an
+• “Arriving soon” message should appear somewhere on the screen.
+
+### Documentation
+MBTA API - https://api-v3.mbta.com/docs/swagger/index.html
+    
 # Project
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -17,11 +24,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
