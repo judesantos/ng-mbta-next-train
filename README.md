@@ -3,18 +3,18 @@
 
 ![Alt text](./src/assets/MBTA-App-img.png?raw=true "Title")
 
-Imagine you live in the Boston area and want a quick reference for when the next train will be coming at a particular stop. Using the MBTA API (details below), write an app using the latest version of Angular to display what time the next train will arrive at your stop.
-### Requirements:
-• Use a service to fetch the data from the API.
-• Inject the service into the component to display the next arrival time.
-• When the arrival time is less than 10 minutes from the current time, change the color of
-the time display to something that will get your attention (yellow, red, orange?) Also, an
-• “Arriving soon” message should appear somewhere on the screen.
+## Features
 
-### Documentation
+* Streaming with Server Sent Event/Event Stream
+* Auto update, add, remove schedules arrivals
+* Status: Arriving Soon, Arrived
+* Search stops
+* Unit Tests
+
+## Documentation
 MBTA API - https://api-v3.mbta.com/docs/swagger/index.html
     
-# Project
+## Project
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 
 ## Build
