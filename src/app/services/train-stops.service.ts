@@ -148,7 +148,7 @@ export class TrainStopsService {
 
         const arrives = new Date(e?.attributes?.arrival_time);
         const departs = new Date(e?.attributes?.departure_time);
-        const etaMins = Math.abs(arrives.getMinutes() - new Date().getMinutes());
+        const etaMins = this.getETA(arrives);
 
         events.push({
           eventId: e?.id,
@@ -185,7 +185,7 @@ export class TrainStopsService {
 
       const arrives = new Date(data?.attributes?.arrival_time);
       const departs = new Date(data?.attributes?.departure_time);
-      const etaMins = Math.abs(arrives.getMinutes() - new Date().getMinutes());
+      const etaMins = this.getETA(arrives);
 
       stopEvents = {
         type,
@@ -206,6 +206,13 @@ export class TrainStopsService {
     }
 
     return stopEvents;
+  }
+
+  private getETA(date: Date) {
+    const nowMins = Math.round(new Date().getTime() / (1000 * 60));
+    const targetMins = Math.round(date.getTime() / ( 1000 * 60));
+
+    return Math.abs(targetMins - nowMins);
   }
 
   private handleResponse(res: any): Stop[] {
