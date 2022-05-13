@@ -102,7 +102,7 @@ export class AppComponent {
         })
         if (!updated) {
           // No entry found in list? Must be an ADD event, add.
-          if (event.type === StopEventType.REMOVE) {
+          if (event.type === StopEventType.ADD) {
             this.arriving.push(_e);
           }
         }
