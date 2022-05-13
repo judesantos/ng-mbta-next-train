@@ -6,7 +6,7 @@
 ## Features
 
 * Streaming with Server Sent Event/Event Stream
-* Auto update, add, remove schedules arrivals
+* Auto update, add, remove scheduled arrivals
 * Status: Arriving Soon, Arrived
 * Search stops
 * Unit Tests
