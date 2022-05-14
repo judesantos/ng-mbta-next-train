@@ -1,31 +1,34 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
-import { Stop, TrainStopsService } from './train-stops.service';
-import { Observable, of } from 'rxjs';
+import { TrainStopsService } from './train-stops.service';
 
 describe('TrainStopsService', () => {
   let service: TrainStopsService;
+  let spy = undefined;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule]
-    });
+    })
     service = TestBed.inject(TrainStopsService);
   });
+
+  afterEach(() => {
+    spy = undefined;
+  })
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it ('should get stops', inject([HttpClient], (client: HttpClient) => {
-    let stops: Stop[] = [];
-    spyOn(client, 'get').and.returnValue(of(stops));
+  /* TODO: Mock HttpClient.get() */
+  it ('should return stops', (done) => {
     service.getStops().subscribe(res => {
-      expect(res).toEqual(stops);
-      expect(res).toBeGreaterThan(0);
+      expect(res).toBeDefined();
+      expect(res.length).toBeGreaterThan(0);
+      done();
     })
-  }));
-
+  });
 
 });

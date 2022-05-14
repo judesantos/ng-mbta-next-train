@@ -62,7 +62,7 @@ export class AppComponent {
 
     if (!this.frmStops.invalid) {
       // Register and receive events
-      const obs: Observable<any> = this.stopsSvc.monitorArrivals(frm.value.stop.id);
+      const obs: Observable<StopEvents> = this.stopsSvc.monitorArrivals(frm.value.stop.id);
       of(obs.subscribe({
           next: (events: StopEvents) => {
             this.handleArrivalEvents(events);
