@@ -103,17 +103,16 @@ export class TrainStopsService {
           obs.next(
             this.handleStreamEvent(event)
           );
-          obs.complete = () => {
-            eventSrc.close()
-          }
         });
       };
       // Handle general errors
       this.eventSrc.onerror = (error: any) => {
-        const _this = this;
         this.zone.run(() => {
+          if (eventSrc.readyState === 0) {
+            eventSrc.close();
+            obs.complete();
+          } 
           obs.error(error);
-          eventSrc.close();
         })
       };
       
